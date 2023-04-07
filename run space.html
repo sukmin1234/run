@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .person {
+        display: block;
+        position: relative;
+        animation: move 10s;
+      }
+      @keyframes move {
+        from {
+          left: 0px;
+        }
+        to {
+          left: calc(100% - 150px);
+        }
+      }
+      .images_flame {
+        position: absolute;
+        top: 500px;
+        width: 100%;
+      }
+      .images_flame:after {
+        position: absolute;
+        top: 170px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid gray;
+        content: "";
+      }
+      .portal {
+        position: absolute;
+        right: 0;
+        top: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen">
+      <img src="./images/fireworks-4880.gif" alt="" width="100%" height="0%" />
+    </div>
+    <div class="container">
+      <div class="images_flame">
+        <img class="person" src="./images/run_1.gif" alt="#" />
+      </div>
+      <div class="portal">
+        <img class="portalImg" src="./images/portal_1.png" alt="#" />
+      </div>
+      <button style="display: none">run</button>
+      <button style="display: none" class="stop">stop</button>
+    </div>
+    <script>
+      const $btn = document.querySelector("button");
+      const $personImg = document.querySelector(".person");
+      const $StopBtn = document.querySelector(".stop");
+      const $portalImg = document.querySelector(".portalImg");
+      let key = null;
+      let idx = 0;
+
+      key = setInterval(() => {
+        if (idx < 9) {
+          idx++;
+        } else {
+          idx = 0;
+        }
+        $personImg.setAttribute("src", `./images/run_${idx + 1}.gif`);
+      }, 50);
+
+      let count = 0;
+      let Intervalkey = setInterval(() => {
+        count++;
+        if (count < 10) {
+          $personImg.style.display = "none";
+        }
+      }, 8000);
+
+      $StopBtn.addEventListener("click", function () {
+        clearInterval(key);
+      });
+
+      let portalkey = null;
+      nowidx = 0;
+
+      portalkeykey = setInterval(() => {
+        if (idx < 7) {
+          idx++;
+        } else {
+          idx = 0;
+        }
+        $portalImg.setAttribute("src", `./images/portal_${idx + 1}.png`);
+      }, 100);
+    </script>
+  </body>
+</html>
